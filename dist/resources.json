@@ -1,0 +1,30 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "",
+  "apis": [{
+    "path": "about.{format}",
+    "description": "About operations"
+  }, {
+    "path": "namespaces.{format}",
+    "description": "Namespace operations"
+  }, {
+    "path": "objects.{format}",
+    "description": "Object operations"
+  }, {
+    "path": "permissions.{format}",
+    "description": "Permission operations"
+  }, {
+    "path": "recent.{format}",
+    "description": "Recent activity operations"
+  }, {
+    "path": "tags.{format}",
+    "description": "Tag operations"
+  }, {
+    "path": "users.{format}",
+    "description": "User operations"
+  }, {
+    "path": "values.{format}",
+    "description": "User operations"
+  }]
+}

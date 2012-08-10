@@ -1,0 +1,99 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/recent",
+  "apis": [{
+    "path": "/recent/objects",
+    "description": "Retrieve information about the latest updated tag values.",
+    "operations": [{
+      "parameters": [{
+        "name": "query",
+        "description": "The query to search objects for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "recentForQuery",
+      "summary": "Get recent activity for query."
+    }]
+  }, {
+    "path": "/recent/objects/{object_id}",
+    "description": "Retrieve information about the latest updated tag values.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object id to get recent activity for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "recentForObject",
+      "summary": "Get recent activity for object id."
+    }]
+  }, {
+    "path": "/recent/about/{about}",
+    "description": "Retrieve information about the latest updated tag values.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about value of the object id to get recent activity for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "recentForAbout",
+      "summary": "Get recent activity for about value."
+    }]
+  }, {
+    "path": "/recent/users/{username}",
+    "description": "Retrieve information about the latest updated tag values.",
+    "operations": [{
+      "parameters": [{
+        "name": "username",
+        "description": "Username to get recent activity for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "recentForUser",
+      "summary": "Get recent activity for user."
+    }]
+  }]
+}

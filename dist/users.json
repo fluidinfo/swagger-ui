@@ -1,0 +1,23 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/users",
+  "apis": [{
+    "path": "/users/{username}",
+    "description": "Return information about a particular user.",
+    "operations": [{
+      "parameters": [{
+        "name": "username",
+        "description": "Username of the user.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getUser",
+      "summary": "Get information about user."
+    }]
+  }]
+}

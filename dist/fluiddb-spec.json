@@ -1,0 +1,11 @@
+{
+    "apiVersion": "0.1",
+    "swaggerVersion": "1.0",
+    "basePath": "http://fluiddb.fluidinfo.com",
+    "apis": [
+        {
+            "path": "/about",
+            "description": "About "
+        },
+    ]
+}

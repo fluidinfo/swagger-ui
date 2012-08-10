@@ -1,0 +1,70 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/values",
+  "apis": [{
+    "path": "/values",
+    "description": "Search for objects matching a Fluidinfo query, and return the value of the requested tags on the matching objects.",
+    "operations": [{
+      "parameters": [{
+        "name": "query",
+        "description": "A query string specifying what objects to match.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "tag",
+        "description": "The path of a tag whose value should be returned. ",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": true,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getValuesForQuery",
+      "summary": "Get tag values on objects from a query"
+    }]
+  }, {
+    "path": "/values",
+    "description": "Sets tag values on objects matching queries.",
+    "operations": [{
+      "parameters": [{
+        "name": "payload",
+        "description": "The JSON data with the values.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": true,
+        "paramType": "body",
+        "defaultValue":"{\"queries\":[[\"mike/rating > 5\",{\"ntoll/rating\":{\"value\":6},\"ntoll/seen\":{\"value\":true}}],[\"fluiddb/about matches \\\"great\\\"\",{\"ntoll/rating\":{\"value\":10}}],[\"fluiddb/id = \\\"6ed3e622-a6a6-4a7e-bb18-9d3440678851\\\"\",{\"mike/seen\":{\"value\":true}}]]}"
+      }],
+      "httpMethod": "PUT",
+      "nickname": "setValuesForQuery",
+      "summary": "Set tag values on objects from a query"
+    }]
+  }, {
+    "path": "/values",
+    "description": "Delete tags from objects matching a query.",
+    "operations": [{
+      "parameters": [{
+        "name": "query",
+        "description": "A query string specifying what objects to match.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "tag",
+        "description": "The name of a tag that should be deleted from objects matching the query.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": true,
+        "paramType": "query"
+      }],
+      "httpMethod": "DELETE",
+      "nickname": "deleteValuesForQuery",
+      "summary": "Delete tags from objects matching a query."
+    }]
+  }]
+}

@@ -1,0 +1,98 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/tags",
+  "apis": [{
+    "path": "/tags/{path}",
+    "description": "Create a new namespace. Intermediate namespaces are created automatically if they don't already exist.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the parent namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "payload",
+        "description": "Information about the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"description\":\"tag descriptioin\",\"name\":\"test\"}"
+      }],
+      "httpMethod": "POST",
+      "nickname": "createTag",
+      "summary": "Create a new tag."
+    }]
+  }, {
+    "path": "/tags/{path}",
+    "description": "Get information about a tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "returnDescription",
+        "description": "If True, also return the tag description.",
+        "allowableValues": {
+          "values": ["false", "true"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "false",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getTag",
+      "summary": "Get information about a tag."
+    }]
+  }, {
+    "path": "/tags/{path}",
+    "description": "Update information about a tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "payload",
+        "description": "Information about the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"description\":\"tag descriptioin\"}"
+      }],
+      "httpMethod": "PUT",
+      "nickname": "updateTag",
+      "summary": "Update a tag."
+    }]
+  }, {
+    "path": "/tags/{path}",
+    "description": "Delete a tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "DELETE",
+      "nickname": "deleteTags",
+      "summary": "Delete a tag."
+    }]
+  }]
+}

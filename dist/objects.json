@@ -1,0 +1,171 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/objects",
+  "apis": [{
+    "path": "/objects",
+    "description": "Create a new object.",
+    "operations": [{
+      "parameters": [{
+        "name": "payload",
+        "description": "Information about the new object.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"about\":\"about value\"}"
+      }],
+      "httpMethod": "POST",
+      "nickname": "createObject",
+      "summary": "Create a new object."
+    }]
+  }, {
+    "path": "/objects",
+    "description": "Retrieve objects matching a query.",
+    "operations": [{
+      "parameters": [{
+        "name": "query",
+        "description": "The query to search objects for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "nickname": "queryObjects",
+      "summary": "Query objects."
+    }]
+  }, {
+    "path": "/objects/{object_id}",
+    "description": "Get information about an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object id to get information for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getObject",
+      "summary": "Get information about object."
+    }]
+  }, {
+    "path": "/objects/{object_id}/{path}",
+    "description": "Get a tag value from an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object id to get information for.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getTagValue",
+      "summary": "Get a tag value from an object."
+    }]
+  }, {
+    "path": "/objects/{object_id}/{path}",
+    "description": "Check if an object has a given tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object ID to check.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "HEAD",
+
+      "nickname": "checkTagValue",
+      "summary": "Check if an object has a given tag."
+    }]
+  }, {
+    "path": "/objects/{object_id}/{path}",
+    "description": "Create or update a tag on an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object ID to add the tag to.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "value",
+        "description": "The JSON value of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"\"JSON value\""
+      }],
+      "httpMethod": "PUT",
+      "errorResponses": [{
+        "reason": "An error with the request payload.",
+        "code": 400
+      }, {
+        "reason": "Bad credentials",
+        "code": 401
+      }],
+      "nickname": "createTagValue",
+      "summary": "Create or update a tag on an object."
+    }]
+  }, {
+    "path": "/objects/{object_id}/{path}",
+    "description": "Remove a tag from an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "object_id",
+        "description": "The object ID to delete the tag from.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "DELETE",
+      "errorResponses": [{
+        "reason": "An error with the request payload.",
+        "code": 400
+      }, {
+        "reason": "Bad credentials",
+        "code": 401
+      }],
+      "nickname": "deleteTagValue",
+      "summary": "Remove a tag from an object."
+    }]
+  }]
+}

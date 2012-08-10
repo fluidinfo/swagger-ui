@@ -1,0 +1,241 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/permissions",
+  "apis": [{
+    "path": "/permissions/namespaces/{path}",
+    "description": "Get the permissions on a namespace.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["create", "update", "delete", "list", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "create",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "getNamespacePermissions",
+      "summary": "Get namespace permissions."
+    }]
+  }, {
+    "path": "/permissions/tags/{path}",
+    "description": "Get the permissions on a tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["update", "delete", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "update",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "getTagPermissions",
+      "summary": "Get tag permissions."
+    }]
+  }, {
+    "path": "/permissions/tag-values/{path}",
+    "description": "Get the permissions on the set of tag instances.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["read", "write", "delete", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "read",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "getTagValuePermissions",
+      "summary": "Get tag value permissions."
+    }]
+  }, {
+    "path": "/permissions/namespaces/{path}",
+    "description": "Set the permissions on a namespace.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["create", "update", "delete", "list", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "create",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "payload",
+        "description": "Permissions and exceptions",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"policy\":\"closed\",\"exceptions\":[\"test\"]}"
+      }],
+      "httpMethod": "PUT",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "setNamespacePermissions",
+      "summary": "Set namespace permissions."
+    }]
+  }, {
+    "path": "/permissions/tags/{path}",
+    "description": "Set the permissions on a tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["update", "delete", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "update",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "payload",
+        "description": "Permissions and exceptions",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"policy\":\"closed\",\"exceptions\":[\"test\"]}"
+      }],
+      "httpMethod": "PUT",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "setTagPermissions",
+      "summary": "Set tag permissions."
+    }]
+  }, {
+    "path": "/permissions/tag-values/{path}",
+    "description": "Set the permissions on the set of tag instances.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "action",
+        "description": "The action whose permissions information is sought.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["read", "write", "delete", "control"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "read",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "payload",
+        "description": "Permissions and exceptions",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"{\"policy\":\"closed\",\"exceptions\":[\"test\"]}"
+      }],
+      "httpMethod": "PUT",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "setTagValuePermissions",
+      "summary": "Set tag value permissions."
+    }]
+  }]
+}

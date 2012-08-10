@@ -1,0 +1,148 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/about",
+  "apis": [{
+    "path": "/about/{about}",
+    "description": "Create a new object.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about tag for the new object.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "POST",
+      "nickname": "createObjectByAbout",
+      "summary": "Create a new object."
+    }]
+  }, {
+    "path": "/about/{about}",
+    "description": "Get information about objects",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "fluiddb/about value for the object",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "notes": "Retrieves information about the Fluidinfo object (if any) with a particular fluiddb/about value",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "getObjectByAbout",
+      "summary": "Get information about object."
+    }]
+  }, {
+    "path": "/about/{about}/{path}",
+    "description": "Get a tag value from an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about tag of the object.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "GET",
+      "nickname": "getTagValueByAbout",
+      "summary": "Get a tag value from an object."
+    }]
+  }, {
+    "path": "/about/{about}/{path}",
+    "description": "Check if an object has a given tag.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about tag of the object",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path to check.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "HEAD",
+
+      "nickname": "checkTagValueByAbout",
+      "summary": "Check if an object has a given tag."
+    }]
+  }, {
+    "path": "/about/{about}/{path}",
+    "description": "Create or update a tag on an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about tag of the object.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "value",
+        "description": "The value of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue":"\"JSON value\""
+      }],
+      "httpMethod": "PUT",
+      "nickname": "createTagValueByAbout",
+      "summary": "Create or update a tag on an object."
+    }]
+  }, {
+    "path": "/about/{about}/{path}",
+    "description": "Remove a tag from an object.",
+    "operations": [{
+      "parameters": [{
+        "name": "about",
+        "description": "The fluiddb/about tag of the object.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "path",
+        "description": "The path of the tag.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "DELETE",
+      "nickname": "deleteTagValueByAbout",
+      "summary": "Remove a tag from an object."
+    }]
+  }]
+}

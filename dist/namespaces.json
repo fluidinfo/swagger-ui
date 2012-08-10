@@ -1,0 +1,149 @@
+{
+  "apiVersion": "0.2",
+  "swaggerVersion": "1.0",
+  "basePath": "https://fluiddb.fluidinfo.com",
+  "resourcePath": "/namespaces",
+  "apis": [{
+    "path": "/namespaces/{path}",
+    "description": "Create a new namespace. Intermediate namespaces are created automatically if they don't already exist.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the parent namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "payload",
+        "description": "Information about the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue": "{\"description\":\"namespace description\",\"name\":\"example\"}"
+      }],
+      "httpMethod": "POST",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond",
+        "code": 404
+      }],
+      "nickname": "createNamespace",
+      "summary": "Create a new namespace."
+    }]
+  }, {
+    "path": "/namespaces/{path}",
+    "description": "Get information about the namespaces contained in a namespace.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "returnDescription",
+        "description": "If True, also return the namespace description.",
+        "allowableValues": {
+          "values": ["false", "true"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "false",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "returnNamespaces",
+        "description": "If True, also return the names of the namespaces in this namespace.",
+        "dataType": "string",
+        "allowableValues": {
+          "values": ["false", "true"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "false",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }, {
+        "name": "returnTags",
+        "description": "If True, also return the names of the tags in this namespace.",
+        "allowableValues": {
+          "values": ["false", "true"],
+          "valueType": "LIST"
+        },
+        "defaultValue": "false",
+        "required": false,
+        "allowMultiple": false,
+        "paramType": "query"
+      }],
+      "httpMethod": "GET",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "getNamespace",
+      "summary": "Get information about namespace."
+    }]
+  }, {
+    "path": "/namespaces/{path}",
+    "description": "Update information about a namespace.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }, {
+        "name": "payload",
+        "description": "Information about the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "body",
+        "defaultValue": "{\"description\":\"namespace description\"}"
+      }],
+      "httpMethod": "PUT",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "updateNamespace",
+      "summary": "Update a namespace."
+    }]
+  }, {
+    "path": "/namespaces/{path}",
+    "description": "Delete a namespace.",
+    "operations": [{
+      "parameters": [{
+        "name": "path",
+        "description": "Path of the namespace.",
+        "dataType": "string",
+        "required": true,
+        "allowMultiple": false,
+        "paramType": "path"
+      }],
+      "httpMethod": "DELETE",
+      "errorResponses": [{
+        "reason": "No object with the given about value exists.",
+        "code": 404
+      }, {
+        "reason": "An error with the request makes it impossible to respond.",
+        "code": 404
+      }],
+      "nickname": "deleteNamespace",
+      "summary": "Delete a namespace."
+    }]
+  }]
+}
