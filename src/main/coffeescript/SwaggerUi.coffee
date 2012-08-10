@@ -34,6 +34,13 @@ class SwaggerUi extends Backbone.Router
     # Event handler for when the baseUrl/apiKey is entered by user
     @headerView.on 'update-swagger-ui', (data) => @updateSwaggerUi(data)
 
+    useAuth = $(':input[name="useauth"]')
+    useAuth.change (event) ->
+      disabled = not useAuth.prop('checked')
+      $(':input[name="username"]').prop('disabled', disabled)
+      $(':input[name="password"]').prop('disabled', disabled)
+    useAuth.change()
+
   # Event handler for when url/key is received from user
   updateSwaggerUi: (data) ->
     @options.discoveryUrl = data.discoveryUrl

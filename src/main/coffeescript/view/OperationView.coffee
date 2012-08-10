@@ -22,7 +22,7 @@ class OperationView extends Backbone.View
     paramView = new ParameterView({model: param, tagName: 'tr', readOnly: @model.isReadOnly})
     $('.operation-params', $(@el)).append paramView.render().el
 
-  
+
   submitOperation: ->
     # Check for errors
     form = $('.sandbox', $(@el))
@@ -47,10 +47,21 @@ class OperationView extends Backbone.View
         if param.paramType is 'body'
           bodyParam = map[param.name]
 
-      log "bodyParam = " + bodyParam 
+      log "bodyParam = " + bodyParam
 
-      headerParams = null
-      invocationUrl = 
+      useAuth = $(':input[name="useauth"]').prop('checked')
+      if useAuth
+        username = $(':input[name="username"]').val()
+        password = $(':input[name="password"]').val()
+
+        authHeader = "basic " + base64Encode("#{username}:#{password}")
+
+        headerParams =
+          "Authorization": authHeader
+      else
+        headerParams = null
+
+      invocationUrl =
         if @model.supportHeaderParams()
           headerParams = @model.getHeaderParams(map)
           @model.urlify(map, false)
@@ -63,7 +74,7 @@ class OperationView extends Backbone.View
       $(".request_url", $(@el)).html "<pre>" + invocationUrl + "</pre>"
       $(".response_throbber", $(@el)).show()
 
-      obj = 
+      obj =
         type: @model.httpMethod
         url: invocationUrl
         headers: headerParams
@@ -77,7 +88,9 @@ class OperationView extends Backbone.View
           @showCompleteStatus(data)
 
       obj.contentType = "application/json" if (obj.type.toLowerCase() == "post" or obj.type.toLowerCase() == "put")
-    
+
+      log "sending", obj
+
       jQuery.ajax(obj)
       # $.getJSON(invocationUrl, (r) => @showResponse(r)).complete((r) => @showCompleteStatus(r)).error (r) => @showErrorStatus(r)
 
@@ -118,3 +131,39 @@ class OperationView extends Backbone.View
   toggleOperationContent: ->
     elem = $('#' + @model.resourceName + "_" + @model.nickname + "_" + @model.httpMethod + "_content");
     if elem.is(':visible') then Docs.collapseOperation(elem) else Docs.expandOperation(elem)
+
+
+CHARACTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/='
+
+window.base64Encode = (text) ->
+
+    if /([^\u0000-\u00ff])/.test(text)
+        throw new Error "Can't base64 encode non-ASCII characters."
+
+    digits = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+    i = 0
+    result = []
+
+    while i < text.length
+        cur = text.charCodeAt(i)
+        byteNum = i % 3
+
+        switch byteNum
+            when 0 then result.push(digits.charAt(cur >> 2)) # first byte
+            when 1 then result.push(digits.charAt((prev & 3) << 4 | (cur >> 4))) # second byte
+            when 2 #third byte
+                result.push(digits.charAt((prev & 0x0f) << 2 | (cur >> 6)))
+                result.push(digits.charAt(cur & 0x3f))
+
+        prev = cur
+        i++
+
+    if byteNum is 0
+        result.push(digits.charAt((prev & 3) << 4))
+        result.push("==")
+    else if byteNum is 1
+        result.push(digits.charAt((prev & 0x0f) << 2))
+        result.push("=")
+
+    # return a string
+    result.join("")
