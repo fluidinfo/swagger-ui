@@ -37,6 +37,7 @@ class SwaggerUi extends Backbone.Router
     useAuth = $(':input[name="useauth"]')
     usernameInput = $(':input[name="username"]')
     passwordInput = $(':input[name="password"]')
+
     useAuth.change (event) ->
       disabled = not useAuth.prop('checked')
       if disabled
