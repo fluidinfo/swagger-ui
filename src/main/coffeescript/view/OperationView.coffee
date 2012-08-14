@@ -26,6 +26,9 @@ class OperationView extends Backbone.View
   submitOperation: ->
     # Check for errors
     form = $('.sandbox', $(@el))
+    console.log('prevent default');
+    form.submit((event) -> event.preventDefault());
+
     error_free = true
     form.find("input.required").each ->
       $(@).removeClass "error"

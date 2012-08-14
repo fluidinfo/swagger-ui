@@ -1081,6 +1081,10 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
       var authHeader, bodyParam, error_free, form, headerParams, invocationUrl, map, o, obj, param, password, useAuth, username, _i, _j, _len, _len1, _ref, _ref1,
         _this = this;
       form = $('.sandbox', $(this.el));
+      console.log('prevent default');
+      form.submit(function(event) {
+        return event.preventDefault();
+      });
       error_free = true;
       form.find("input.required").each(function() {
         var _this = this;
