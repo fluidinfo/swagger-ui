@@ -1053,12 +1053,18 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
     OperationView.prototype.initialize = function() {};
 
     OperationView.prototype.render = function() {
-      var isMethodSubmissionSupported, param, _i, _len, _ref;
+      var form, isMethodSubmissionSupported, param, _i, _len, _ref,
+        _this = this;
       isMethodSubmissionSupported = jQuery.inArray(this.model.httpMethod, this.model.supportedSubmitMethods()) >= 0;
       if (!isMethodSubmissionSupported) {
         this.model.isReadOnly = true;
       }
       $(this.el).html(Handlebars.templates.operation(this.model));
+      form = $('.sandbox', $(this.el));
+      form.submit(function(event) {
+        event.preventDefault();
+        return _this.submitOperation();
+      });
       _ref = this.model.parameters;
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         param = _ref[_i];
@@ -1081,10 +1087,6 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
       var authHeader, bodyParam, error_free, form, headerParams, invocationUrl, map, o, obj, param, password, useAuth, username, _i, _j, _len, _len1, _ref, _ref1,
         _this = this;
       form = $('.sandbox', $(this.el));
-      console.log('prevent default');
-      form.submit(function(event) {
-        return event.preventDefault();
-      });
       error_free = true;
       form.find("input.required").each(function() {
         var _this = this;

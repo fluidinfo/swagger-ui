@@ -13,6 +13,11 @@ class OperationView extends Backbone.View
 
     $(@el).html(Handlebars.templates.operation(@model))
 
+    form = $('.sandbox', $(@el))
+    form.submit (event) =>
+      event.preventDefault()
+      @submitOperation()
+
     # Render each parameter
     @addParameter param for param in @model.parameters
     @
@@ -26,8 +31,6 @@ class OperationView extends Backbone.View
   submitOperation: ->
     # Check for errors
     form = $('.sandbox', $(@el))
-    console.log('prevent default');
-    form.submit((event) -> event.preventDefault());
 
     error_free = true
     form.find("input.required").each ->
