@@ -802,7 +802,7 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
     SwaggerUi.prototype.mainView = null;
 
     SwaggerUi.prototype.initialize = function(options) {
-      var useAuth,
+      var authChanged, passwordInput, useAuth, usernameInput,
         _this = this;
       if (options == null) {
         options = {};
@@ -831,13 +831,23 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
         return _this.updateSwaggerUi(data);
       });
       useAuth = $(':input[name="useauth"]');
+      usernameInput = $(':input[name="username"]');
+      passwordInput = $(':input[name="password"]');
       useAuth.change(function(event) {
         var disabled;
         disabled = !useAuth.prop('checked');
-        $(':input[name="username"]').prop('disabled', disabled);
-        return $(':input[name="password"]').prop('disabled', disabled);
+        if (disabled) {
+          usernameInput.val('');
+          return passwordInput.val('');
+        }
       });
-      return useAuth.change();
+      authChanged = function(event) {
+        var contentSet;
+        contentSet = usernameInput.val() !== '' || passwordInput.val() !== '';
+        return useAuth.prop('checked', contentSet);
+      };
+      usernameInput.bind('propertychange keyup input paste', authChanged);
+      return passwordInput.bind('propertychange keyup input paste', authChanged);
     };
 
     SwaggerUi.prototype.updateSwaggerUi = function(data) {
