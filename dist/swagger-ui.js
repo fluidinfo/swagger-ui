@@ -1137,6 +1137,11 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
           headerParams = {
             "Authorization": authHeader
           };
+        } else if (swaggerUi.options.oauthToken) {
+          headerParams = {
+            "X-FluidDB-Access-Token": swaggerUi.options.oauthToken,
+            "Authorization": "oauth2"
+          };
         } else {
           headerParams = null;
         }

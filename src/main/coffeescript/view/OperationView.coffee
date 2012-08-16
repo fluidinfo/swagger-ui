@@ -64,6 +64,10 @@ class OperationView extends Backbone.View
 
         headerParams =
           "Authorization": authHeader
+      else if swaggerUi.options.oauthToken
+        headerParams =
+          "X-FluidDB-Access-Token": swaggerUi.options.oauthToken
+          "Authorization": "oauth2"
       else
         headerParams = null
 
