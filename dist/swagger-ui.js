@@ -762,12 +762,12 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
   var buffer = "", stack1, foundHelper, self=this, functionType="function", helperMissing=helpers.helperMissing, undef=void 0, escapeExpression=this.escapeExpression;
 
 
-  buffer += "\n<div class='container' id='resources_container'>\n    <ul id='resources'>\n    </ul>\n\n    <div class=\"footer\">\n        <br>\n        <br>\n        <h4 style=\"color: #999\">[<span style=\"font-variant: small-caps\">base url</span>: ";
+  buffer += "\n<div class='swagger-container' id='swagger-resources_container'>\n    <ul id='resources'>\n    </ul>\n\n    <div class=\"footer\">\n        <br>\n        <br>\n        <h4 style=\"color: #999\">[<span style=\"font-variant: small-caps\">base url</span>: ";
   foundHelper = helpers.basePath;
   stack1 = foundHelper || depth0.basePath;
   if(typeof stack1 === functionType) { stack1 = stack1.call(depth0, { hash: {} }); }
   else if(stack1=== undef) { stack1 = helperMissing.call(depth0, "basePath", { hash: {} }); }
-  buffer += escapeExpression(stack1) + "]</h4>\n    </div>\n</div>";
+  buffer += escapeExpression(stack1) + "]</h4>\n    </div>\n</div>\n";
   return buffer;});
 })();
 
