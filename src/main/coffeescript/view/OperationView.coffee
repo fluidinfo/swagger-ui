@@ -49,11 +49,11 @@ class OperationView extends Backbone.View
           map[o.name] = o.value
 
       bodyParam = null
+      contentType = null
       for param in @model.parameters
         if param.paramType is 'body'
           bodyParam = map[param.name]
-
-      log "bodyParam = " + bodyParam
+          contentType = param.contentType
 
       useAuth = $(':input[name="useauth"]').prop('checked')
       if useAuth
@@ -78,9 +78,6 @@ class OperationView extends Backbone.View
         else
           @model.urlify(map, true)
 
-      log 'submitting ' + invocationUrl
-
-
       $(".request_url", $(@el)).html "<pre>" + invocationUrl + "</pre>"
       $(".response_throbber", $(@el)).show()
 
@@ -98,6 +95,11 @@ class OperationView extends Backbone.View
           @showCompleteStatus(data)
 
       obj.contentType = "application/json" if (obj.type.toLowerCase() == "post" or obj.type.toLowerCase() == "put")
+
+      log "model", @model
+
+      if contentType?
+        obj.contentType = contentType
 
       log "sending", obj
 

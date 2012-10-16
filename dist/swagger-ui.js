@@ -1094,7 +1094,7 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
     };
 
     OperationView.prototype.submitOperation = function() {
-      var authHeader, bodyParam, error_free, form, headerParams, invocationUrl, map, o, obj, param, password, useAuth, username, _i, _j, _len, _len1, _ref, _ref1,
+      var authHeader, bodyParam, contentType, error_free, form, headerParams, invocationUrl, map, o, obj, param, password, useAuth, username, _i, _j, _len, _len1, _ref, _ref1,
         _this = this;
       form = $('.sandbox', $(this.el));
       error_free = true;
@@ -1121,14 +1121,15 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
           }
         }
         bodyParam = null;
+        contentType = null;
         _ref1 = this.model.parameters;
         for (_j = 0, _len1 = _ref1.length; _j < _len1; _j++) {
           param = _ref1[_j];
           if (param.paramType === 'body') {
             bodyParam = map[param.name];
+            contentType = param.contentType;
           }
         }
-        log("bodyParam = " + bodyParam);
         useAuth = $(':input[name="useauth"]').prop('checked');
         if (useAuth) {
           username = $(':input[name="username"]').val();
@@ -1146,7 +1147,6 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
           headerParams = null;
         }
         invocationUrl = this.model.supportHeaderParams() ? (headerParams = this.model.getHeaderParams(map), this.model.urlify(map, false)) : this.model.urlify(map, true);
-        log('submitting ' + invocationUrl);
         $(".request_url", $(this.el)).html("<pre>" + invocationUrl + "</pre>");
         $(".response_throbber", $(this.el)).show();
         obj = {
@@ -1167,6 +1167,10 @@ templates['main'] = template(function (Handlebars,depth0,helpers,partials,data) 
         };
         if (obj.type.toLowerCase() === "post" || obj.type.toLowerCase() === "put") {
           obj.contentType = "application/json";
+        }
+        log("model", this.model);
+        if (contentType != null) {
+          obj.contentType = contentType;
         }
         log("sending", obj);
         return jQuery.ajax(obj);
